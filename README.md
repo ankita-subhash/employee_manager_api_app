@@ -37,6 +37,14 @@ Register URL: http://localhost:8000/admin-panel/register/
 ![signup](https://user-images.githubusercontent.com/58456645/99963149-5c8de400-2db7-11eb-9062-a7bf7f302dde.PNG)
 
 
+Enter Test Card Details from below : 
+
+https://razorpay.com/docs/payment-gateway/test-card-details/
+
+![razorpay](https://user-images.githubusercontent.com/58456645/99964254-0752d200-2db9-11eb-985b-38d59bd5b5ad.PNG)
+![checkout](https://user-images.githubusercontent.com/58456645/99964263-09b52c00-2db9-11eb-978f-0e2061433fbe.PNG)
+
+
 
 Login URL: http://localhost:8000/admin-panel/login/
 
@@ -66,7 +74,7 @@ http://localhost:8000/admin-panel/emp-list/
 Swagger UI : 
 http://localhost:8000/s
 
+![swaggerr](https://user-images.githubusercontent.com/58456645/99963916-84317c00-2db8-11eb-9869-639906ed3e0f.PNG)
 
-
-
+---------------------------------------------------------
 
