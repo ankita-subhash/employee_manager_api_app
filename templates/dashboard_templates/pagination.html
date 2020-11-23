@@ -1,0 +1,19 @@
+<div class="pagination">
+    <ul class="pagination">
+    <!-- <span class="step-links"> -->
+        {% if emp.has_previous %}
+        <li class="page-item"><a class="page-link" href="?page=1">&laquo; first</a></li>
+        <li class="page-item"><a class="page-link"href="?page={{ emp.previous_page_number }}">previous</a></li>
+        {% endif %}
+
+        <span class="current">
+          <li class="page-item page-link"> Page {{ emp.number }} of {{ emp.paginator.num_pages }}.</li>
+        </span>
+
+        {% if emp.has_next %}
+        <li class="page-item"><a class="page-link" href="?page={{ emp.next_page_number }}">next</a></li>
+        <li class="page-item"><a class="page-link" href="?page={{ emp.paginator.num_pages }}">last &raquo;</a></li>
+        {% endif %}
+    <!-- </span> -->
+  </ul>
+</div>

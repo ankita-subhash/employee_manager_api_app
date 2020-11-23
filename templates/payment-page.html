@@ -1,0 +1,143 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content=" ">
+
+  <title>Payment</title>
+  <!-- Favicon -->
+  <link rel="icon" href="{% static 'dashboard1/assets/img/brand/favicon.png' %} " type="image/png">
+  <!-- Fonts -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
+  <!-- Icons -->
+  <link rel="stylesheet" href="{% static 'dashboard1/assets/vendor/nucleo/css/nucleo.css' %}" type="text/css">
+  <link rel="stylesheet" href="{% static 'dashboard1/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css' %}" type="text/css">
+  <!-- CSS -->
+  <link rel="stylesheet" href="{% static 'dashboard1/assets/css/argon.css' %}" type="text/css">
+</head>
+
+<body class="bg-default">
+  <!-- Navbar -->
+  
+  <!-- Main content -->
+  <div class="main-content">
+    <!-- Header -->
+    <div class="header bg-gradient-primary py-7 py-lg-8 pt-lg-9">
+      
+      <div class="separator separator-bottom separator-skew zindex-100">
+        <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
+          <polygon class="fill-default" points="2560 0 2560 100 0 100"></polygon>
+        </svg>
+      </div>
+    </div>
+    
+    <!-- Page content -->
+    <div class="container mt--8 pb-5">
+      <div class="row justify-content-center">
+        <div class="col-lg-5 col-md-7">
+          <div class="card bg-secondary border-0 mb-0">
+            <div class="card-header bg-transparent pb-5">
+              <div class="alert alert-success text-center" role="alert">
+                <button type="button" aria-hidden="true" class="close" data-dismiss="alert" aria-label="Close">
+                  <i class="nc-icon nc-simple-remove"></i>
+                </button>
+                <span ><b>Registered Succesfully ...! </b></span>
+              </div>
+              <div class="text-muted text-center mt-2 mb-3"><small>Pay with Razorpay </small></div>
+              <h1 class="text-center">Check Out Payment</h1>
+                <p class="text-center">Name: <strong>{{request.user}}</strong></p>
+        
+                <h3 class="text-center">Pay Only :<strong> Rs.120/-</strong> for 1 Year</h3>
+                
+
+            </div>
+            <div class="card-body px-lg-5 py-lg-5">
+              <form action="{% url 'payment_status' %} " class="text-center" method="POST">
+                {% csrf_token %}
+              <button id="rzp-button1" class="razorpay-payment-button btn btn-primary" >Checkout</button>
+              </form>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+var options = {
+    "key": "rzp_test_yU3FAUN0xK1zJV", // Enter the Key ID generated from the Dashboard
+    "amount": "12000", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+    "currency": "INR",
+    "name": "{{user.name}}",
+    "description": "Test Transaction",
+    "image": "{%static 'myidhome/images/logo.png' %}",
+    "order_id": "{{order_id}}", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+    "callback_url": "{% url 'payment_status' %}",
+    "prefill": {
+        "name": "{{user.name}}",
+        "email": "{{user.email}}",
+        "contact": "{{user.contact_no}}"
+    },
+    "notes": {
+        "address": "Online Payment"
+    },
+    "theme": {
+        "color": "#2ebd6b"
+    }
+};
+var rzp1 = new Razorpay(options);
+document.getElementById('rzp-button1').onclick = function(e){
+    rzp1.open();
+    e.preventDefault();
+}
+</script>
+              <!-- <div class="text-center text-muted mb-4">
+                
+    
+              </div> -->
+              <!-- <form action="{% url 'payment_status' %} " class="text-center" method="POST">
+                {% csrf_token %}
+                
+                <script    src="https://checkout.razorpay.com/v1/checkout.js"
+                                   data-key="rzp_test_rTeMfsLMcgcUuM"
+                                   data-amount="{{amount}}"
+                                   data-currency="INR"
+                                   data-order_id="{{order_id}}"
+                                   data-buttontext="Pay With Razorpay"
+                                   data-button_theme = "btn btn-primary my-4"
+                
+                                   data-name="{{user.name}}"
+                                   data-description="Test transaction"
+                                   data-image="{%static 'myidhome/images/logo.png' %}"
+                                   data-prefill.name="1233"
+                                   data-prefill.email="{{user.email}}"
+                                   data-prefill.contact="{{user.contact_no}}"
+                                   data-theme.color="#F37254"></script>
+                        <input type="submit" value="Pay With Razorpay" class="razorpay-payment-button btn btn-primary my-4">
+                        <input type="hidden" custom="Hidden Element" name="hidden" >
+                    </form> -->
+            </div>
+            
+          </div>
+          <!-- <div class="row mt-3">
+            <div class="col-6">
+              <a href="#" class="text-light"><small>Forgot password?</small></a>
+            </div>
+            <div class="col-6 text-right">
+              <a href="#" class="text-light"><small>Create new account</small></a>
+            </div>
+          </div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Argon Scripts -->
+  <!-- Core -->
+  <script src="{% static 'dashboard1/assets/vendor/jquery/dist/jquery.min.js' %}"></script>
+  <script src="{% static 'dashboard1/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'dashboard1/assets/vendor/js-cookie/js.cookie.js' %}"></script>
+  <script src="{% static 'dashboard1/assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js' %}"></script>
+  <script src="{% static 'dashboard1/assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js' %}"></script>
+  <!-- Argon JS -->
+  <script src="{% static 'dashboard1/assets/js/argon.js' %}"></script>
+</body>
+
+</html>

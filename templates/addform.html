@@ -1,0 +1,113 @@
+{% load static %}
+{% load widget_tweaks %}
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sign Up</title>
+
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="{% static 'login/fonts/material-icon/css/material-design-iconic-font.min.css' %}">
+
+    <!-- Main css -->
+    <link rel="stylesheet" href="{% static 'login/css/style.css' %}">
+</head>
+
+<body>
+
+    <div class="main">
+
+        <!-- Sign up form -->
+        <section class="signup">
+            <div class="container">
+              
+
+                <div class="signup-content">
+                    <div class="signup-form">
+                        <h2 class="form-title">Sign up</h2>
+                        <form method="POST" class="register-form" action="{% url 'register' %}">
+                            <div class="form-group">
+                                {%csrf_token%}
+                                <div class="form-group">
+                                    <p>User Name</p>
+                                {{userform.username | add_class:'form-group' | add_required_class:"is-required"}}
+                                </div>
+                                <p>First Name</p>
+                                <!-- <input type="text" name="first_name" id="first_name" placeholder="Your Name">  -->
+                                {{form.first_name | add_class:'form-group' | add_required_class:"is-required" }}
+                            </div>
+                            <div class="form-group">
+                                <p>Last Name</p>
+                            {{form.last_name | add_class:'form-group' | add_required_class:"is-required"}}
+
+                            </div>
+                            <div class="form-group">
+                                <p>Email</p>
+                            {{userform.email | add_class:'form-group' | add_required_class:"is-required"}}
+                            </div>
+                            <div class="form-group">
+                                <p>Address</p>
+                            {{form.home_address | add_class:'form-group' | add_required_class:"is-required"}}
+                            </div>
+                            <div class="form-group">
+                                <p>Birth Date</p>
+                            {{form.birth_date | add_class:'form-group' | add_required_class:"is-required"}}
+                            </div>
+                            <div class="form-group">
+                                <p>Company Name</p>
+                            {{form.company_name | add_class:'form-group' | add_required_class:"is-required"}}
+                            </div>
+                            
+                            <div class="form-group">
+                                <p>Password</p>
+                            {{userform.password1 | add_class:'form-group' | add_required_class:"is-required"}}
+                            </div>
+                            <div class="form-group">
+                                <p>Confirm Password</p>
+                            {{userform.password2 | add_class:'form-group' | add_required_class:"is-required"}}
+                            </div>
+                            {% if userform.errors %}
+                            {% for field in userform %}
+                                {% for error in field.errors %}
+                                <div class="alert alert-danger" role="alert">
+                                    <button type="button" aria-hidden="true" class="close" data-dismiss="alert" aria-label="Close">
+                                      <i class="nc-icon nc-simple-remove"></i>
+                                    </button>
+                                    <span><b>{{ error|escape }}</b></span>
+                                  </div>
+                                {% endfor %}
+                            {% endfor %}
+                            {% for error in userform.non_field_errors %}
+                            <div class="alert alert-danger" role="alert">
+                                <button type="button" aria-hidden="true" class="close" data-dismiss="alert" aria-label="Close">
+                                  <i class="nc-icon nc-simple-remove"></i>
+                                </button>
+                                <span> <b>{{ error|escape }}</b></span>
+                              </div>
+                            {% endfor %}
+                        {% elif userform.is_valid %}
+                              
+                        <div class="alert alert-danger" role="alert">
+                            <button type="button" aria-hidden="true" class="close" data-dismiss="alert" aria-label="Close">
+                              <i class="nc-icon nc-simple-remove"></i>
+                            </button>
+                            <span ><b>Registered Succesfully</b></span>
+                          </div>
+                         
+                        {% endif %}
+            
+                            <div class="form-group form-button">
+                                <input type="submit" name="signup" id="signup" class="form-submit" value="Register">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="signup-image">
+                        <figure><img src="{% static 'login/images/signup-image.jpg' %}" alt="sing up image"></figure>
+                        <a href="{% url 'login' %}" class="signup-image-link">I am already member</a>
+                    </div>
+                </div>
+            </div>
+        </section>

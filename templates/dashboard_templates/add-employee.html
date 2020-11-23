@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% block title %} Add Employee {% endblock title %}
+{% block createblog %} <li class="active">{% endblock createblog %}
+
+{% block content %}
+<div class="content">
+<div class="card card-user">
+    {% if form.errors %}
+            {% for field in form %}
+                {% for error in field.errors %}
+                <div class="alert alert-danger alert-dismissible fade show">
+                    <button type="button" aria-hidden="true" class="close" data-dismiss="alert" aria-label="Close">
+                      <i class="nc-icon nc-simple-remove"></i>
+                    </button>
+                  
+                    <span> <b>{{ error|escape }}</b></span>
+                  </div>
+                {% endfor %}
+            {% endfor %}
+            {% for error in form.non_field_errors %}
+            <div class="alert alert-danger alert-dismissible fade show">
+                <button type="button" aria-hidden="true" class="close" data-dismiss="alert" aria-label="Close">
+                  <i class="nc-icon nc-simple-remove"></i>
+                </button>
+                <span> <b>{{ error|escape }}</b></span>
+              </div>
+            {% endfor %}
+        {% elif form.is_valid %}
+              
+        <div class="alert alert-success alert-dismissible fade show">
+            <button type="button" aria-hidden="true" class="close" data-dismiss="alert" aria-label="Close">
+              <i class="nc-icon nc-simple-remove"></i>
+            </button>
+            <span> <b>Employee Details Successfully Added ...! </b></span>
+          </div>
+         
+        {% endif %}
+    <div class="card-header">
+      <h5 class="card-title">Add New Employee</h5>
+    </div>
+    <div class="card-body">
+      <form action= "{% url 'add-emp' %}" method="POST"  enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+            <label class="text-dark">Employee First Name: </label>
+            {{form.first_name}} 
+          </div>
+        <div class="form-group">
+            <label class="text-dark" >Last name </label>
+            {{form.last_name}}
+           
+        </div>
+        <div class="form-group">
+            <label class="text-dark">Company Name</label><br>
+            {{form.company_name}}
+            
+        </div>
+        <div class="form-group">
+            <label class="text-dark">Email: </label><br>
+           {{form.email}}
+           <!-- {{form.email.error}} -->
+        </div>
+        <div class="form-group">
+          <label class="text-dark">Mobile </label>
+          {{form.mobile_number}}
+      </div>
+  
+        <div class="form-group">
+          <label class="text-dark">Address</label><br>
+            {{form.home_address}}
+      </div>       
+      
+        <div class="form-group">
+            <label class="text-dark">City </label>
+            {{form.city}}
+        </div>
+        <div class="form-group">
+          <label class="text-dark">DOB </label>
+          {{form.birth_date}}
+      </div>
+      <div class="form-group">
+        <label class="text-dark">Password </label>
+        {{form.emp_pwd}}
+    </div>        
+        <button type="submit" class="btn btn-primary">Save Entry</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+{% endblock content %}

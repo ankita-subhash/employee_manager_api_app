@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %} Dashbord {% endblock title %}
+
+
+{% block activedash %} <li class="active">{% endblock activedash %}
+
+{% block content %}
+
+  <div class="content">
+    <div class="container">
+     <h2>:: Welcome To Dashbord :: </h2>
+    <div class="row">
+     
+      <a class="btn btn-primary " href="{% url 'emplist' %}"> View Employee List </a> <br>
+      <a href="{% url 'swagger' %}" class="btn btn-secondary ">Swagger API</a>
+
+
+    </div>
+    {% endblock content %}
